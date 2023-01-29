@@ -1,0 +1,36 @@
+unit Conexao;
+
+interface
+
+uses Data.DB;
+
+type
+  iQuery = interface;
+
+  iConexao = interface
+    function Connection : TObject;
+  end;
+
+  iConexaoFactory = interface
+    function Conexao : iConexao;
+    function Query : iQuery;
+  end;
+
+  iQuery = interface
+    function Query : TObject;
+    function Open(aSQL : String) : iQuery;
+    function ExecSQL(aSQL : String) : iQuery;
+  end;
+
+  iEntidade = interface
+    function DataSet ( aValue : TDataSource ) : iEntidade;
+    procedure Open;
+  end;
+
+  iEntidadeFactory = interface
+    function Produto : iEntidade;
+  end;
+
+implementation
+
+end.

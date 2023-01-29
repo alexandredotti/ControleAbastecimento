@@ -1,0 +1,84 @@
+unit TanqueDAO;
+
+interface
+
+uses Tanque, Conexao, System.SysUtils, Data.DB;
+
+type
+  TTanqueDAO = class(TInterfacedObject, iTanque)
+  private
+    { private declarations }
+    FQuery : iQuery;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    procedure Salvar(aTanque: TTAnque);
+    procedure Excluir(aID_Tanque: Integer);
+    function Listar(ADataSource: TDataSource): iTanque;
+  end;
+implementation
+
+uses
+  FactoryConexao;
+
+constructor TTanqueDAO.Create;
+begin
+  FQuery := TFactoryConexao.New.Query;
+end;
+
+destructor TTanqueDAO.Destroy;
+begin
+  inherited;
+end;
+
+procedure TTanqueDAO.Salvar(aTanque: TTAnque);
+var
+  tp_tanque: integer;
+begin
+  try
+    case aTanque.TP_TANQUE of
+      Gasolina : tp_tanque := 1;
+      Diesel : tp_tanque := 2;
+    end;
+
+    if (aTanque.Id = 0) then
+    begin
+      FQuery.ExecSQL(
+        Format('INSERT INTO TANQUE (DS_TANQUE, TP_TANQUE) VALUES (%S, %S)'
+        ,[aTanque.DS_TANQUE, tp_tanque]));
+    end
+    else
+    begin
+      FQuery.ExecSQL(
+        Format('UPDATE TANQUE SET DS_TANQUE = %S, TP_TANQUE = %S WHERE ID = %S'
+        ,[aTanque.DS_TANQUE, tp_tanque, aTanque.ID]));
+    end;
+
+  except on E: Exception do
+    raise Exception.Create(E.Message);
+  end;
+end;
+
+procedure TTanqueDAO.Excluir(aID_Tanque: Integer);
+begin
+  try
+    FQuery.ExecSQL(
+      Format('DELETE FROM TANQUE WHERE ID = %S'
+      ,[aID_Tanque]));
+  except on E: Exception do
+    raise Exception.Create(E.Message);
+  end;
+end;
+
+function TTanqueDAO.Listar(ADataSource: TDataSource): iTanque;
+begin
+  try
+    Result := self;
+    FQuery.ExecSQL('SELECT * FROM TANQUE');
+    ADataSource.DataSet := FQuery.Query as TDataSet;
+  except on E: Exception do
+    raise Exception.Create(E.Message);
+  end;
+end;
+
+end.

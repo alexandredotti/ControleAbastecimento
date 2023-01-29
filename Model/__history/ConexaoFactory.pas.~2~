@@ -1,0 +1,48 @@
+unit ConexaoFactory;
+
+interface
+
+uses Conexao, FiredacConexao, FiredacQuery;
+
+type
+  TConexaoFactory = class(TInterfacedObject, iConexaoFactory)
+  private
+
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New : iConexaoFactory;
+    function Conexao : iConexao;
+    function Query : iQuery;
+  end;
+
+implementation
+
+{ TConexaoFactory }
+
+function TConexaoFactory.Conexao: iConexao;
+begin
+  Result := TFiredacConexao.New;
+end;
+
+constructor TConexaoFactory.Create;
+begin
+
+end;
+
+destructor TConexaoFactory.Destroy;
+begin
+  inherited;
+end;
+
+class function TConexaoFactory.New: iConexaoFactory;
+begin
+  Result := Self.Create;
+end;
+
+function TConexaoFactory.Query: iQuery;
+begin
+  Result := TFiredacQuery.New(Self.Conexao);
+end;
+
+end.

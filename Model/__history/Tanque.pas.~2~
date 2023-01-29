@@ -1,0 +1,41 @@
+unit Tanque;
+
+interface
+
+type
+  TTP_TANQUE = (Gasolina, Diesel);
+
+  TTanque = class
+  private
+    FDS_TANQUE: String;
+    FID: Integer;
+    FTP_TANQUE: TTP_TANQUE;
+    procedure SetDS_TANQUE(const aValue: String);
+    procedure SetID(const aValue: Integer);
+    procedure SetTP_TANQUE(const aValue: TTP_TANQUE);
+  public
+    property ID: Integer read FID write SetID;
+    property DS_TANQUE: String read FDS_TANQUE write SetDS_TANQUE;
+    property TP_TANQUE: TTP_TANQUE read FTP_TANQUE write SetTP_TANQUE;
+  end;
+
+implementation
+
+{ TTanque }
+
+procedure TTanque.SetDS_TANQUE(const aValue: String);
+begin
+  FDS_TANQUE := aValue;
+end;
+
+procedure TTanque.SetID(const aValue: Integer);
+begin
+  FID := aValue;
+end;
+
+procedure TTanque.SetTP_TANQUE(const aValue: TTP_TANQUE);
+begin
+  FTP_TANQUE := aValue;
+end;
+
+end.

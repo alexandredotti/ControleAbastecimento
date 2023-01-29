@@ -1,0 +1,74 @@
+unit TanqueController;
+
+interface
+
+uses Tanque, TanqueDAO, SysUtils, Data.DB;
+
+type
+  TTanqueController = class
+  private
+    { private declarations }
+    FdsTanque: TDataSource;
+  public
+    procedure Salvar(aTanque: TTAnque);
+    procedure Excluir();
+    procedure SetDataSouceGrid(ADataSource: TDataSource);
+    procedure Listar();
+  end;
+implementation
+{ TTanqueBO }
+
+procedure TTanqueController.Excluir();
+var
+  TanqueDAO: TTanqueDAO;
+begin
+  try
+    if (FdsTanque.DataSet.IsEmpty) then
+      Exit;
+
+    TanqueDAO := TTanqueDAO.Create;
+    TanqueDAO.Excluir(FdsTanque.DataSet.FieldByName('ID').AsInteger);
+    FreeAndNil(TanqueDAO);
+  except on E: Exception do
+    begin
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+procedure TTanqueController.Listar;
+var
+  TanqueDAO: TTanqueDAO;
+begin
+  try
+    TanqueDAO := TTanqueDAO.Create;
+    TanqueDAO.Listar(FdsTanque);
+    FreeAndNil(TanqueDAO);
+  except on E: Exception do
+    begin
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+procedure TTanqueController.Salvar(aTanque: TTAnque);
+var
+  TanqueDAO: TTanqueDAO;
+begin
+  try
+    TanqueDAO := TTanqueDAO.Create;
+    TanqueDAO.Salvar(aTanque);
+    FreeAndNil(TanqueDAO);
+  except on E: Exception do
+    begin
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+procedure TTanqueController.SetDataSouceGrid(ADataSource: TDataSource);
+begin
+  FdsTanque := ADataSource;
+end;
+
+end.

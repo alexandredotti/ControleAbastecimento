@@ -1,0 +1,44 @@
+unit Conexao;
+
+interface
+
+uses Data.DB, Tanque, Bomba, Abastecimento;
+
+type
+
+  iConexao = interface
+    function Connection : TObject;
+  end;
+
+  iQuery = interface
+    function Query : TObject;
+    function Open(aSQL : String) : iQuery;
+    function ExecSQL(aSQL : String) : iQuery;
+  end;
+
+  iConexaoFactory = interface
+    function Conexao : iConexao;
+    function Query : iQuery;
+  end;
+
+  iTanque = interface
+    procedure Salvar(aTanque: TTAnque);
+    procedure Excluir(aID_Tanque: Integer);
+    function Listar(ADataSource: TDataSource): iTanque;
+  end;
+
+  iBomba = interface
+    procedure Salvar(aBomba: TBomba);
+    procedure Excluir(aBomba: Integer);
+    function Listar(ADataSource: TDataSource): iBomba;
+  end;
+
+  iAbastecimento = interface
+    procedure Salvar(aAbastecimento: TAbastecimento);
+    procedure Excluir(aAbastecimento: Integer);
+    function Listar(ADataSource: TDataSource): iAbastecimento;
+  end;
+
+implementation
+
+end.

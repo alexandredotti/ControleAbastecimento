@@ -1,0 +1,60 @@
+unit FiredacQuery;
+
+interface
+
+uses Conexao, FireDAC.Comp.Client, System.SysUtils;
+
+type
+  TFiredacQuery = class(TInterfacedObject, iQuery)
+  private
+    FQuery : TFDQuery;
+    FConexao : iConexao;
+  public
+    constructor Create(aValue : iConexao);
+    destructor Destroy; override;
+    class function New(aValue : iConexao) : iQuery;
+    function Query : TObject;
+    function Open(aSQL : String) : iQuery;
+    function ExecSQL(aSQL : String) : iQuery;
+  end;
+
+implementation
+
+{ TModelFiredacQuery }
+
+constructor TFiredacQuery.Create(aValue: iConexao);
+begin
+  FConexao := aValue;
+  FQuery := TFDQuery.Create(nil);
+  FQuery.Connection := TFDConnection(FConexao.Connection);
+end;
+
+destructor TFiredacQuery.Destroy;
+begin
+  FreeAndNil(FQuery);
+  inherited;
+end;
+
+function TFiredacQuery.ExecSQL(aSQL: String): iQuery;
+begin
+  Result := Self;
+  FQuery.ExecSQL(aSQL);
+end;
+
+class function TFiredacQuery.New(aValue: iConexao): iQuery;
+begin
+  Result := Self.Create(aValue);
+end;
+
+function TFiredacQuery.Open(aSQL: String): iQuery;
+begin
+  Result := Self;
+  FQuery.Open(aSQL);
+end;
+
+function TFiredacQuery.Query: TObject;
+begin
+  Result := FQuery;
+end;
+
+end.

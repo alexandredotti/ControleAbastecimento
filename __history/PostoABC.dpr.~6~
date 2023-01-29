@@ -1,0 +1,22 @@
+program PostoABC;
+
+uses
+  Vcl.Forms,
+  Principal in 'View\Principal.pas' {Form3},
+  Conexao in 'Model\Conexao.pas',
+  FiredacQuery in 'Model\FiredacQuery.pas',
+  Tanque in 'Model\Tanque.pas',
+  Bomba in 'Model\Bomba.pas',
+  Abastecimento in 'Model\Abastecimento.pas',
+  {$R}
+  TanqueDAO in 'Model\TanqueDAO.pas' {$R *.res},
+  FactoryConexao in 'FactoryConexao.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm3, Form3);
+  Application.Run;
+end.

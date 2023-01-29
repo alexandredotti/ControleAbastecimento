@@ -1,0 +1,31 @@
+program PostoABC;
+
+uses
+  Vcl.Forms,
+  Principal in 'View\Principal.pas' {frmPrincipal},
+  Conexao in 'Model\Conexao.pas',
+  FiredacQuery in 'Model\FiredacQuery.pas',
+  Tanque in 'Model\Tanque.pas',
+  Bomba in 'Model\Bomba.pas',
+  Abastecimento in 'Model\Abastecimento.pas',
+  TanqueDAO in 'Model\TanqueDAO.pas' {$R *.res},
+  FactoryConexao in 'Model\FactoryConexao.pas',
+  FiredacConexao in 'Model\FiredacConexao.pas',
+  BombaDAO in 'Model\BombaDAO.pas',
+  AbastecimentoDAO in 'Model\AbastecimentoDAO.pas',
+  TanqueController in 'Controller\TanqueController.pas',
+  BombaController in 'Controller\BombaController.pas',
+  AbastecimentoController in 'Controller\AbastecimentoController.pas',
+  ufTanque in 'View\ufTanque.pas' {frmTanque},
+  ufTanqueEditor in 'View\ufTanqueEditor.pas' {frmTanqueEditor};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmTanque, frmTanque);
+  Application.CreateForm(TfrmTanqueEditor, frmTanqueEditor);
+  Application.Run;
+end.

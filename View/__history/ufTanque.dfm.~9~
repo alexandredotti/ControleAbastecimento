@@ -1,0 +1,15 @@
+inherited frmTanque: TfrmTanque
+  Caption = 'Tanque'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    inherited Panel2: TPanel
+      inherited btnEditar: TButton
+        OnClick = btnEditarClick
+      end
+      inherited btnExcluir: TButton
+        OnClick = btnExcluirClick
+      end
+    end
+  end
+end

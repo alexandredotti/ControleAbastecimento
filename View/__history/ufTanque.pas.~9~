@@ -1,0 +1,62 @@
+unit ufTanque;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufConsultaBase, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, TanqueController;
+
+type
+  TfrmTanque = class(TfrmConsultaBase)
+    procedure btnNovoClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+  private
+    { Private declarations }
+    TanqueController : TTanqueController;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTanque: TfrmTanque;
+
+implementation
+
+{$R *.dfm}
+uses ufTanqueEditor;
+
+procedure TfrmTanque.btnEditarClick(Sender: TObject);
+begin
+  inherited;
+  TanqueController.Editar;
+end;
+
+procedure TfrmTanque.btnExcluirClick(Sender: TObject);
+begin
+  inherited;
+  TanqueController.Excluir;
+end;
+
+procedure TfrmTanque.btnNovoClick(Sender: TObject);
+begin
+  inherited;
+  if (frmTanqueEditor = nil) then
+  begin
+    Application.CreateForm(TfrmTanqueEditor, frmTanqueEditor);
+  end;
+
+  frmTanqueEditor.Show();
+end;
+
+procedure TfrmTanque.FormCreate(Sender: TObject);
+begin
+  inherited;
+  TanqueController := TTanqueController.Create;
+  TanqueController.SetDataSouceGrid(dsGrade);
+  TanqueController.Listar;
+end;
+
+end.
