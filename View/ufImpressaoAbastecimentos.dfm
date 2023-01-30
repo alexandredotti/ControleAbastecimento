@@ -3,7 +3,7 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
   Top = 0
   Caption = 'Abastecimentos por Per'#237'odo'
   ClientHeight = 597
-  ClientWidth = 769
+  ClientWidth = 847
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,11 +17,11 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
   object Panel2: TPanel
     Left = 0
     Top = 0
-    Width = 769
+    Width = 847
     Height = 65
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 800
+    ExplicitWidth = 769
     object GroupBox1: TGroupBox
       Left = 8
       Top = 0
@@ -71,6 +71,7 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
     Top = 71
     Width = 1123
     Height = 794
+    DataSource = dtsRelatorio
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -13
@@ -157,7 +158,7 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
       object RLLabel3: TRLLabel
         Left = 3
         Top = 0
-        Width = 46
+        Width = 69
         Height = 16
         Align = faTopOnly
         Alignment = taCenter
@@ -170,12 +171,11 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
         ParentFont = False
       end
       object RLLabel4: TRLLabel
-        Left = 52
+        Left = 78
         Top = 0
-        Width = 180
-        Height = 16
+        Width = 226
+        Height = 18
         Align = faTopOnly
-        Alignment = taCenter
         Caption = 'Bomba'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -185,12 +185,11 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
         ParentFont = False
       end
       object RLLabel5: TRLLabel
-        Left = 229
+        Left = 310
         Top = 0
-        Width = 180
+        Width = 216
         Height = 16
         Align = faTopOnly
-        Alignment = taCenter
         Caption = 'Tanque'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -200,7 +199,7 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
         ParentFont = False
       end
       object RLLabel6: TRLLabel
-        Left = 408
+        Left = 532
         Top = 0
         Width = 74
         Height = 16
@@ -214,7 +213,7 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
         ParentFont = False
       end
       object RLLabel7: TRLLabel
-        Left = 483
+        Left = 607
         Top = 0
         Width = 98
         Height = 17
@@ -228,7 +227,7 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
         ParentFont = False
       end
       object RLLabel8: TRLLabel
-        Left = 579
+        Left = 703
         Top = 0
         Width = 91
         Height = 16
@@ -256,55 +255,58 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
       object RLDBText1: TRLDBText
         Left = 3
         Top = 0
-        Width = 46
+        Width = 70
         Height = 16
         DataField = 'DT_ABASTECIMENTO'
         DataSource = dtsRelatorio
         Text = ''
       end
       object RLDBText2: TRLDBText
-        Left = 52
+        Left = 79
         Top = 0
-        Width = 180
+        Width = 225
         Height = 16
         DataField = 'DS_BOMBA'
         DataSource = dtsRelatorio
         Text = ''
       end
       object RLDBText3: TRLDBText
-        Left = 229
+        Left = 310
         Top = 0
-        Width = 180
+        Width = 216
         Height = 16
         DataField = 'DS_TANQUE'
         DataSource = dtsRelatorio
         Text = ''
       end
       object RLDBText4: TRLDBText
-        Left = 408
-        Top = 0
+        Left = 532
+        Top = -1
         Width = 74
         Height = 16
         DataField = 'NR_LITROS'
         DataSource = dtsRelatorio
+        DisplayMask = '0.00'
         Text = ''
       end
       object RLDBText5: TRLDBText
-        Left = 483
+        Left = 607
         Top = 0
         Width = 98
         Height = 16
         DataField = 'VL_TOTAL'
         DataSource = dtsRelatorio
+        DisplayMask = '0.00'
         Text = ''
       end
       object RLDBText6: TRLDBText
-        Left = 579
+        Left = 703
         Top = 0
         Width = 91
         Height = 16
         DataField = 'VL_IMPOSTO'
         DataSource = dtsRelatorio
+        DisplayMask = '0.00'
         Text = ''
       end
     end
@@ -316,26 +318,26 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
       BandType = btFooter
       BeforePrint = RLBand5BeforePrint
       object lbperiodo: TLabel
-        Left = 273
+        Left = 429
         Top = 0
-        Width = 104
-        Height = 21
+        Width = 97
+        Height = 16
         Caption = 'Total do Per'#237'odo:'
       end
       object lbLitros: TRLLabel
-        Left = 408
-        Top = 0
+        Left = 532
+        Top = -1
         Width = 74
         Height = 16
       end
       object lbTotal: TRLLabel
-        Left = 483
-        Top = 0
+        Left = 607
+        Top = -1
         Width = 98
         Height = 16
       end
       object lbImposto: TRLLabel
-        Left = 579
+        Left = 703
         Top = 0
         Width = 91
         Height = 16

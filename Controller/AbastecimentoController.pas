@@ -95,6 +95,7 @@ begin
   frmAbastecimentoEditor.EditCodigo.Text := '';
   frmAbastecimentoEditor.SetIndexComboBomba;
   frmAbastecimentoEditor.ComboBomba.ItemIndex := 0;
+  frmAbastecimentoEditor.DT_ABASTECIMENTO.Date := now;
   frmAbastecimentoEditor.ShowModal();
 
 end;

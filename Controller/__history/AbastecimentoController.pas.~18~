@@ -87,11 +87,16 @@ end;
 procedure TAbastecimentoController.Novo;
 begin
   if (frmAbastecimentoEditor = nil) then
-  begin
     Application.CreateForm(TfrmAbastecimentoEditor, frmAbastecimentoEditor);
-  end;
+
+  frmAbastecimentoEditor.edLitros.Value := 0;
+  frmAbastecimentoEditor.edValor.Value := 0;
+  frmAbastecimentoEditor.edImposto.Value := 0;
+  frmAbastecimentoEditor.EditCodigo.Text := '';
+  frmAbastecimentoEditor.SetIndexComboBomba;
+  frmAbastecimentoEditor.ComboBomba.ItemIndex := 0;
   frmAbastecimentoEditor.ShowModal();
-  Listar;
+
 end;
 
 procedure TAbastecimentoController.Salvar(aAbastecimento: TAbastecimento);
