@@ -43,7 +43,6 @@ inherited frmBombaEditor: TfrmBombaEditor
       Width = 278
       Height = 21
       Color = clWhite
-      Enabled = False
       TabOrder = 0
     end
     object ComboTanque: TComboBox

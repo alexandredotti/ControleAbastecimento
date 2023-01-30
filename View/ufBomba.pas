@@ -13,6 +13,7 @@ type
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     BombaController : TBombaController;
@@ -32,22 +33,21 @@ procedure TfrmBomba.btnEditarClick(Sender: TObject);
 begin
   inherited;
   BombaController.Editar;
+  BombaController.Listar;
 end;
 
 procedure TfrmBomba.btnExcluirClick(Sender: TObject);
 begin
   inherited;
   BombaController.Excluir;
+  BombaController.Listar;
 end;
 
 procedure TfrmBomba.btnNovoClick(Sender: TObject);
 begin
   inherited;
-  if (frmBombaEditor = nil) then
-  begin
-    Application.CreateForm(TfrmBombaEditor, frmBombaEditor);
-  end;
-  frmBombaEditor.Show();
+  BombaController.Novo;
+  BombaController.Listar;
 end;
 
 procedure TfrmBomba.FormCreate(Sender: TObject);
@@ -55,6 +55,11 @@ begin
   inherited;
   BombaController := TBombaController.Create;
   BombaController.SetDataSouceGrid(dsGrade);
+end;
+
+procedure TfrmBomba.FormShow(Sender: TObject);
+begin
+  inherited;
   BombaController.Listar;
 end;
 

@@ -1,0 +1,99 @@
+unit ufImpressaoAbastecimentos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.ExtCtrls,
+  Conexao, Data.DB;
+
+type
+  TfrmImpressaoAbastecimentos = class(TForm)
+    Panel2: TPanel;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    DataInicial: TDateTimePicker;
+    DataFinal: TDateTimePicker;
+    btnImprimir: TButton;
+    dtsRelatorio: TDataSource;
+    procedure FormShow(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
+  private
+    FQuery : iQuery;
+    function ValidarImpressao: Boolean;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos;
+
+implementation
+
+{$R *.dfm}
+uses
+  FactoryConexao;
+
+procedure TfrmImpressaoAbastecimentos.btnImprimirClick(Sender: TObject);
+var
+  s: string;
+begin
+  if not ValidarImpressao then
+    Exit;
+
+  FQuery := TFactoryConexao.New.Query;
+
+  s := 'SELECT BOMBA.DS_BOMBA'
+    +', ABASTECIMENTO.DT_ABASTECIMENTO'
+    +', ABASTECIMENTO.NR_LITROS'
+    +', ABASTECIMENTO.VL_TOTAL'
+    +', ABASTECIMENTO.VL_IMPOSTO'
+    +', TANQUE.DS_TANQUE'
+    +' FROM ABASTECIMENTO'
+    +' INNER JOIN BOMBA ON (BOMBA.ID = ABASTECIMENTO.ID_BOMBA)'
+    +' INNER JOIN TANQUE ON (TANQUE.ID = BOMBA.ID_TANQUE)'
+    +' WHERE ABASTECIMENTO.DT_ABASTECIMENTO >= '+QuotedStr(FormatDateTime('yyyy-mm-dd',DataInicial.Date))
+    +' AND ABASTECIMENTO.DT_ABASTECIMENTO <= '+QuotedStr(FormatDateTime('yyyy-mm-dd',DataFinal.Date))
+    +' ORDER BY ABASTECIMENTO.DT_ABASTECIMENTO';
+
+  FQuery.Open(s);
+
+  if ((FQuery as TDataSet).IsEmpty) then
+  begin
+    Application.MessageBox(PWideChar('Nenhum registro encontrado no período.'),
+      'Abastecimentos por Bomba',MB_OK + MB_ICONINFORMATION);
+
+    Exit;
+  end
+  else
+  begin
+    dtsRelatorio.DataSet := (FQuery as TDataSet);
+  end;
+
+
+end;
+
+procedure TfrmImpressaoAbastecimentos.FormShow(Sender: TObject);
+begin
+  DataInicial.Date := Date();
+  DataFinal.Date := Date();
+
+  DataInicial.SetFocus();
+end;
+
+function TfrmImpressaoAbastecimentos.ValidarImpressao: Boolean;
+begin
+  Result := False;
+
+  if (DataInicial.Date > DataFinal.Date) then
+  begin
+    Application.MessageBox(PWideChar('A data inicial não pode ser maior que a data final.'),
+      'Abastecimentos por Bomba',MB_OK + MB_ICONINFORMATION);
+    Exit;
+  end;
+
+  Result := True;
+end;
+
+end.

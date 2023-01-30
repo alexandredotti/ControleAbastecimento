@@ -2,7 +2,7 @@ unit Conexao;
 
 interface
 
-uses Data.DB, Tanque, Bomba, Abastecimento;
+uses Data.DB, Tanque, Bomba, Abastecimento, System.Generics.Collections;
 
 type
 
@@ -29,6 +29,7 @@ type
     procedure Salvar(aTanque: TTAnque);
     procedure Excluir(aID_Tanque: Integer);
     function Listar(ADataSource: TDataSource): iTanque;
+    function GetList(): TList<TTanque>;
   end;
 
   iBomba = interface
@@ -36,6 +37,7 @@ type
     procedure Salvar(aBomba: TBomba);
     procedure Excluir(aBomba: Integer);
     function Listar(ADataSource: TDataSource): iBomba;
+    function GetList(): TList<TBomba>;
   end;
 
   iAbastecimento = interface

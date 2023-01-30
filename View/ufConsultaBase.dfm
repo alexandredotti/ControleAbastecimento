@@ -59,6 +59,7 @@ object frmConsultaBase: TfrmConsultaBase
       Height = 345
       Align = alClient
       DataSource = dsGrade
+      ReadOnly = True
       TabOrder = 1
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText

@@ -1,0 +1,88 @@
+unit AbastecimentoDAO;
+
+interface
+
+uses Abastecimento, Conexao, System.SysUtils, Data.DB, Data.SqlExpr;
+
+type
+  TAbastecimentoDAO = class(TInterfacedObject, iAbastecimento)
+  private
+    { private declarations }
+    FQuery : iQuery;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    procedure Salvar(aAbastecimento: TAbastecimento);
+    procedure Excluir(aAbastecimento: Integer);
+    function Listar(ADataSource: TDataSource): iAbastecimento;
+  end;
+implementation
+
+uses
+  FactoryConexao;
+
+constructor TAbastecimentoDAO.Create;
+begin
+  FQuery := TFactoryConexao.New.Query;
+end;
+
+destructor TAbastecimentoDAO.Destroy;
+begin
+  inherited;
+end;
+
+procedure TAbastecimentoDAO.Salvar(aAbastecimento: TAbastecimento);
+var
+  s: string;
+begin
+  try
+    if (aAbastecimento.Id = 0) then
+    begin
+      (FQuery as TSQLQuery).SQL.Add('INSERT INTO ABASTECIMENTO (DT_ABASTECIMENTO, ID_BOMBA, NR_LITROS, VL_TOTAL, VL_IMPOSTO) VALUES (:DT_ABASTECIMENTO, :ID_BOMBA, :NR_LITROS, :VL_TOTAL, :VL_IMPOSTO)');
+
+      (FQuery as TSQLQuery).ParamByName('DT_ABASTECIMENTO').AsDateTime := aAbastecimento.DT_ABASTECIMENTO;
+      (FQuery as TSQLQuery).ParamByName('ID_BOMBA').AsInteger := aAbastecimento.ID_BOMBA;
+      (FQuery as TSQLQuery).ParamByName('NR_LITROS').AsCurrency := aAbastecimento.NR_LITROS;
+      (FQuery as TSQLQuery).ParamByName('VL_TOTAL').AsCurrency := aAbastecimento.VL_TOTAL;
+      (FQuery as TSQLQuery).ParamByName('VL_IMPOSTO').AsCurrency := aAbastecimento.VL_IMPOSTO;
+
+      (FQuery as TSQLQuery).ExecSQL();
+    end
+    else
+    begin
+      FQuery.ExecSQL(
+        Format('UPDATE ABASTECIMENTO SET DT_ABASTECIMENTO = %S, ID_BOMBA = %d,'
+        +' NR_LITROS = %S, VL_TOTAL = %S, VL_IMPOSTO = %s WHERE ID = %d'
+        ,[aAbastecimento.DT_ABASTECIMENTO, aAbastecimento.ID_BOMBA,
+        aAbastecimento.NR_LITROS, aAbastecimento.VL_TOTAL, aAbastecimento.VL_IMPOSTO
+        ,aAbastecimento.ID]));
+    end;
+
+  except on E: Exception do
+    raise Exception.Create(E.Message);
+  end;
+end;
+
+procedure TAbastecimentoDAO.Excluir(aAbastecimento: Integer);
+begin
+  try
+    FQuery.ExecSQL(
+      Format('DELETE FROM ABASTECIMENTO WHERE ID = %d'
+      ,[aAbastecimento]));
+  except on E: Exception do
+    raise Exception.Create(E.Message);
+  end;
+end;
+
+function TAbastecimentoDAO.Listar(ADataSource: TDataSource): iAbastecimento;
+begin
+  try
+    Result := self;
+    FQuery.Open('SELECT * FROM ABASTECIMENTO');
+    ADataSource.DataSet := FQuery.Query as TDataSet;
+  except on E: Exception do
+    raise Exception.Create(E.Message);
+  end;
+end;
+
+end.

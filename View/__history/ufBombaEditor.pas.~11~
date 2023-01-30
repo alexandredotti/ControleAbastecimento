@@ -1,0 +1,79 @@
+unit ufBombaEditor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufEditorBase, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Tanque, System.Generics.Collections, Bomba, Conexao, TanqueDAO;
+
+type
+  TfrmBombaEditor = class(TfrmEditorBase)
+    Label1: TLabel;
+    EditDS_BOMBA: TEdit;
+    ComboTanque: TComboBox;
+    Label2: TLabel;
+    procedure btnSalvarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+  private
+    TanqueDAO: iTanque;
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure SetDados(aBomba : TBomba);
+    procedure SetItemsComboTanque(ATanques: TList<TTanque>);
+  end;
+
+var
+  frmBombaEditor: TfrmBombaEditor;
+
+implementation
+
+{$R *.dfm}
+
+uses BombaController;
+
+procedure TfrmBombaEditor.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  Self.CloseModal;
+end;
+
+procedure TfrmBombaEditor.btnSalvarClick(Sender: TObject);
+var
+  Bomba: TBomba;
+  ControllerBomba : TBombaController;
+begin
+  inherited;
+  Bomba := TBomba.Create();
+  ControllerBomba := TBombaController.Create();
+
+  if EditCodigo.Text <> '' then
+    Bomba.ID := strToInt(EditCodigo.Text)
+  else
+    Bomba.ID := 0;
+
+  Bomba.DS_BOMBA := EditDS_BOMBA.Text;
+  Bomba.ID_TANQUE := ComboTanque.ItemIndex;
+  ControllerBomba.Salvar(Bomba);
+end;
+
+procedure TfrmBombaEditor.SetDados(aBomba: TBomba);
+begin
+  TanqueDAO := TTanqueDAO.Create;
+  EditCodigo.Text := inttostr(aBomba.ID);
+  EditDS_BOMBA.Text := aBomba.DS_BOMBA;
+  SetItemsComboTanque(TanqueDAO.GetList());
+end;
+
+procedure TfrmBombaEditor.SetItemsComboTanque(ATanques: TList<TTanque>);
+var
+  tanque: TTanque;
+begin
+  ComboTanque.Items.Clear;
+  //ComboTanque.AddItem('[Selecione]', TObject(0));
+  for tanque in ATanques do
+    ComboTanque.AddItem(tanque.ToString, TObject(tanque.Id));
+end;
+
+end.

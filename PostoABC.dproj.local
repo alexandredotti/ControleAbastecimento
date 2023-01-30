@@ -60,8 +60,8 @@
     <Transaction>2023/01/28 12:20:24.000.161,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanque.pas</Transaction>
     <Transaction>2023/01/28 12:20:24.000.161,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanque.dfm</Transaction>
     <Transaction>2023/01/28 12:51:12.000.116,=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas</Transaction>
-    <Transaction>2023/01/28 12:51:22.000.739,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanqueEditor.pas</Transaction>
     <Transaction>2023/01/28 12:51:22.000.739,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanqueEditor.dfm</Transaction>
+    <Transaction>2023/01/28 12:51:22.000.739,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanqueEditor.pas</Transaction>
     <Transaction>2023/01/28 19:37:38.000.021,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufConsultaBase.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanque.pas</Transaction>
     <Transaction>2023/01/28 19:37:38.000.021,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufConsultaBase.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanque.dfm</Transaction>
     <Transaction>2023/01/28 19:50:31.000.738,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufEditorBase.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanqueEditor.dfm</Transaction>
@@ -70,8 +70,8 @@
     <Transaction>2023/01/28 19:51:29.000.779,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanque.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas</Transaction>
     <Transaction>2023/01/28 19:51:29.000.779,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanque.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.dfm</Transaction>
     <Transaction>2023/01/28 19:54:58.000.321,=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas</Transaction>
-    <Transaction>2023/01/28 19:55:10.000.602,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanqueEditor.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas</Transaction>
     <Transaction>2023/01/28 19:55:10.000.602,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanqueEditor.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.dfm</Transaction>
+    <Transaction>2023/01/28 19:55:10.000.602,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufTanqueEditor.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas</Transaction>
     <Transaction>2023/01/28 21:26:23.000.942,=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas</Transaction>
     <Transaction>2023/01/28 21:26:36.000.314,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufBomba.pas</Transaction>
     <Transaction>2023/01/28 21:26:36.000.314,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufBomba.dfm</Transaction>
@@ -79,11 +79,14 @@
     <Transaction>2023/01/28 21:32:26.000.221,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufBombaEditor.pas</Transaction>
     <Transaction>2023/01/28 21:32:26.000.221,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufBombaEditor.dfm</Transaction>
     <Transaction>2023/01/28 21:41:11.000.010,=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas</Transaction>
-    <Transaction>2023/01/28 21:41:23.000.993,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufAbastecimento.dfm</Transaction>
     <Transaction>2023/01/28 21:41:23.000.993,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufAbastecimento.pas</Transaction>
+    <Transaction>2023/01/28 21:41:23.000.993,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufAbastecimento.dfm</Transaction>
     <Transaction>2023/01/28 21:53:45.000.385,=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas</Transaction>
     <Transaction>2023/01/28 21:54:04.000.997,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufAbastecimentoEditor.dfm</Transaction>
     <Transaction>2023/01/28 21:54:04.000.997,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufAbastecimentoEditor.pas</Transaction>
+    <Transaction>2023/01/29 17:42:22.000.761,=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas</Transaction>
+    <Transaction>2023/01/29 17:43:11.000.795,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.pas=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufImpressaoAbastecimentos.pas</Transaction>
+    <Transaction>2023/01/29 17:43:11.000.795,C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\Unit1.dfm=C:\Users\Alexandre\Desktop\Teste Técnico\PostoABC\View\ufImpressaoAbastecimentos.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Controller"/>
@@ -120,5 +123,7 @@
     <File Path="View\ufAbastecimento.dfm"/>
     <File Path="View\ufAbastecimentoEditor.pas"/>
     <File Path="View\ufAbastecimentoEditor.dfm"/>
+    <File Path="View\ufImpressaoAbastecimentos.pas"/>
+    <File Path="View\ufImpressaoAbastecimentos.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

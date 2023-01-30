@@ -2,7 +2,7 @@ unit AbastecimentoDAO;
 
 interface
 
-uses Abastecimento, Conexao, System.SysUtils, Data.DB;
+uses Abastecimento, Conexao, System.SysUtils, Data.DB, Data.SqlExpr;
 
 type
   TAbastecimentoDAO = class(TInterfacedObject, iAbastecimento)
@@ -32,24 +32,36 @@ begin
 end;
 
 procedure TAbastecimentoDAO.Salvar(aAbastecimento: TAbastecimento);
+var
+  s, vl_imposto, vl_total, nr_litros: string;
 begin
   try
+    vl_imposto := StringReplace(CurrToStr(aAbastecimento.VL_IMPOSTO), ',', '.',[rfReplaceAll]);
+    vl_total := StringReplace(CurrToStr(aAbastecimento.VL_TOTAL), ',', '.',[rfReplaceAll]);
+    nr_litros := StringReplace(CurrToStr(aAbastecimento.NR_LITROS), ',', '.',[rfReplaceAll]);
+
     if (aAbastecimento.Id = 0) then
     begin
-      FQuery.ExecSQL(
-        Format('INSERT INTO ABASTECIMENTO (DT_ABASTECIMENTO, ID_BOMBA, NR_LITROS,'
-        +' VL_TOTAL, VL_IMPOSTO) VALUES (%S, %S, %S, %S, %S)'
-        ,[aAbastecimento.DT_ABASTECIMENTO, aAbastecimento.ID_BOMBA,
-        aAbastecimento.NR_LITROS, aAbastecimento.VL_TOTAL, aAbastecimento.VL_IMPOSTO]));
+      s := 'INSERT INTO ABASTECIMENTO (DT_ABASTECIMENTO, ID_BOMBA, NR_LITROS,'
+        +' VL_TOTAL, VL_IMPOSTO) VALUES'
+        +' ('+QuotedStr(FormatDateTime('yyyy/mm/dd',aAbastecimento.DT_ABASTECIMENTO))
+        +','+inttostr(aAbastecimento.ID_BOMBA)
+        +','+nr_litros
+        +','+vl_total
+        +','+vl_imposto+')';
+
+      FQuery.ExecSQL(s);
     end
     else
     begin
-      FQuery.ExecSQL(
-        Format('UPDATE ABASTECIMENTO SET DT_ABASTECIMENTO = %S, ID_BOMBA = %S,'
-        +' NR_LITROS = %S, VL_TOTAL = %S, VL_IMPOSTO = %S WHERE ID = %S'
-        ,[aAbastecimento.DT_ABASTECIMENTO, aAbastecimento.ID_BOMBA,
-        aAbastecimento.NR_LITROS, aAbastecimento.VL_TOTAL, aAbastecimento.VL_IMPOSTO
-        ,aAbastecimento.ID]));
+      s := 'UPDATE ABASTECIMENTO SET DT_ABASTECIMENTO = '+QuotedStr(FormatDateTime('yyyy/mm/dd',aAbastecimento.DT_ABASTECIMENTO))
+        +', ID_BOMBA = '+inttostr(aAbastecimento.ID_BOMBA)
+        +', NR_LITROS = '+nr_litros
+        +', VL_TOTAL = '+vl_total
+        +', VL_IMPOSTO = '+vl_imposto
+        +' WHERE ID = '+inttostr(aAbastecimento.ID);
+
+      FQuery.ExecSQL(s);
     end;
 
   except on E: Exception do
@@ -61,7 +73,7 @@ procedure TAbastecimentoDAO.Excluir(aAbastecimento: Integer);
 begin
   try
     FQuery.ExecSQL(
-      Format('DELETE FROM ABASTECIMENTO WHERE ID = %S'
+      Format('DELETE FROM ABASTECIMENTO WHERE ID = %d'
       ,[aAbastecimento]));
   except on E: Exception do
     raise Exception.Create(E.Message);
@@ -72,7 +84,7 @@ function TAbastecimentoDAO.Listar(ADataSource: TDataSource): iAbastecimento;
 begin
   try
     Result := self;
-    FQuery.ExecSQL('SELECT * FROM ABASTECIMENTO');
+    FQuery.Open('SELECT * FROM ABASTECIMENTO');
     ADataSource.DataSet := FQuery.Query as TDataSet;
   except on E: Exception do
     raise Exception.Create(E.Message);

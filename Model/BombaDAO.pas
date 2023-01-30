@@ -2,7 +2,7 @@ unit BombaDAO;
 
 interface
 
-uses Bomba, Conexao, System.SysUtils, Data.DB, Tanque;
+uses Bomba, Conexao, System.SysUtils, Data.DB, Tanque, System.Generics.Collections;
 
 type
   TBombaDAO = class(TInterfacedObject, iBomba)
@@ -15,6 +15,7 @@ type
     procedure Salvar(aBomba: TBomba);
     procedure Excluir(aBomba: Integer);
     function Listar(ADataSource: TDataSource): iBomba;
+    function GetList(): TList<TBomba>;
   end;
 implementation
 
@@ -37,14 +38,14 @@ begin
     if (aBomba.Id = 0) then
     begin
       FQuery.ExecSQL(
-        Format('INSERT INTO BOMBA (DS_BOMBA, ID_TANQUE) VALUES (%S, %S)'
-        ,[aBomba.DS_BOMBA, aBomba.ID_TANQUE]));
+        Format('INSERT INTO BOMBA (DS_BOMBA, ID_TANQUE) VALUES (%S, %d)'
+        ,[QuotedStr(aBomba.DS_BOMBA), aBomba.ID_TANQUE]));
     end
     else
     begin
       FQuery.ExecSQL(
-        Format('UPDATE BOMBA SET DS_BOMBA = %S, ID_TANQUE = %S WHERE ID = %S'
-        ,[aBomba.DS_BOMBA, aBomba.ID_TANQUE, aBomba.ID]));
+        Format('UPDATE BOMBA SET DS_BOMBA = %S, ID_TANQUE = %d WHERE ID = %d'
+        ,[QuotedStr(aBomba.DS_BOMBA), aBomba.ID_TANQUE, aBomba.ID]));
     end;
 
   except on E: Exception do
@@ -56,10 +57,30 @@ procedure TBombaDAO.Excluir(aBomba: Integer);
 begin
   try
     FQuery.ExecSQL(
-      Format('DELETE FROM BOMBA WHERE ID = %S'
+      Format('DELETE FROM BOMBA WHERE ID = %d'
       ,[aBomba]));
   except on E: Exception do
     raise Exception.Create(E.Message);
+  end;
+end;
+
+function TBombaDAO.GetList: TList<TBomba>;
+var
+  Bomba : TBomba;
+begin
+  Result := TList<TBomba>.Create;
+   FQuery.Open('SELECT * FROM BOMBA');
+  if (FQuery.Query as TDataSet).IsEmpty  then
+    Exit;
+  while (not (FQuery.Query as TDataSet).Eof) do
+  begin
+    Bomba := TBomba.Create;
+    Bomba.ID := (FQuery.Query as TDataSet).FieldByName('ID').AsInteger;
+    Bomba.DS_BOMBA := (FQuery.Query as TDataSet).FieldByName('DS_BOMBA').AsString;
+
+    Result.Add(Bomba);
+
+    (FQuery.Query as TDataSet).Next;
   end;
 end;
 
@@ -67,7 +88,7 @@ function TBombaDAO.Listar(ADataSource: TDataSource): iBomba;
 begin
   try
     Result := self;
-    FQuery.ExecSQL('SELECT * FROM BOMBA');
+    FQuery.Open('SELECT * FROM BOMBA');
     ADataSource.DataSet := FQuery.Query as TDataSet;
   except on E: Exception do
     raise Exception.Create(E.Message);

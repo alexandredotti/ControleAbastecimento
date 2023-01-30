@@ -2,7 +2,7 @@ unit AbastecimentoController;
 
 interface
 
-uses Abastecimento, AbastecimentoDAO, SysUtils, Data.DB, Vcl.Forms;
+uses Abastecimento, AbastecimentoDAO, SysUtils, Data.DB, Vcl.Forms, Conexao;
 
 type
   TAbastecimentoController = class
@@ -10,7 +10,7 @@ type
     { private declarations }
     FdsAbastecimento: TDataSource;
     Abastecimento: TAbastecimento;
-    procedure SetDados;
+    AbastecimentoDAO : iAbastecimento;
     procedure GetDados;
   public
     procedure Salvar(aAbastecimento: TAbastecimento);
@@ -18,31 +18,44 @@ type
     procedure SetDataSouceGrid(ADataSource: TDataSource);
     procedure Listar();
     procedure Editar();
+    procedure Novo();
+    constructor Create;
+    destructor Destroy;override;
   end;
 implementation
 
 
 uses ufAbastecimentoEditor;
 
+constructor TAbastecimentoController.Create;
+begin
+  AbastecimentoDAO := TAbastecimentoDAO.Create;
+  Abastecimento := TAbastecimento.Create;
+end;
+
+destructor TAbastecimentoController.Destroy;
+begin
+  if (Assigned(Abastecimento)) then
+    FreeAndNil(Abastecimento);
+  inherited;
+end;
+
 procedure TAbastecimentoController.Editar;
 begin
   if (not Assigned(frmAbastecimentoEditor)) then
     Application.CreateForm(TfrmAbastecimentoEditor, frmAbastecimentoEditor);
   GetDados;
-  SetDados;
-  frmAbastecimentoEditor.Show;
+  frmAbastecimentoEditor.SetDados(Abastecimento);
+  frmAbastecimentoEditor.ShowModal;
 end;
 
 procedure TAbastecimentoController.Excluir();
-var
-  AbastecimentoDAO: TAbastecimentoDAO;
 begin
   try
     if (FdsAbastecimento.DataSet.IsEmpty) then
       Exit;
-    AbastecimentoDAO := TAbastecimentoDAO.Create;
+
     AbastecimentoDAO.Excluir(FdsAbastecimento.DataSet.FieldByName('ID').AsInteger);
-    FreeAndNil(AbastecimentoDAO);
   except on E: Exception do
     begin
       raise Exception.Create(E.Message);
@@ -52,7 +65,6 @@ end;
 
 procedure TAbastecimentoController.GetDados;
 begin
-  Abastecimento := TAbastecimento.Create;
   Abastecimento.ID := FdsAbastecimento.DataSet.FieldByName('ID').AsInteger;
   Abastecimento.DT_ABASTECIMENTO := FdsAbastecimento.DataSet.FieldByName('DT_ABASTECIMENTO').AsDateTime;
   Abastecimento.ID_BOMBA := FdsAbastecimento.DataSet.FieldByName('ID_BOMBA').AsInteger;
@@ -62,42 +74,40 @@ begin
 end;
 
 procedure TAbastecimentoController.Listar;
-var
-  AbastecimentoDAO: TAbastecimentoDAO;
 begin
   try
-    AbastecimentoDAO := TAbastecimentoDAO.Create;
     AbastecimentoDAO.Listar(FdsAbastecimento);
-    FreeAndNil(AbastecimentoDAO);
   except on E: Exception do
     begin
       raise Exception.Create(E.Message);
     end;
   end;
+end;
+
+procedure TAbastecimentoController.Novo;
+begin
+  if (frmAbastecimentoEditor = nil) then
+    Application.CreateForm(TfrmAbastecimentoEditor, frmAbastecimentoEditor);
+
+  frmAbastecimentoEditor.edLitros.Value := 0;
+  frmAbastecimentoEditor.edValor.Value := 0;
+  frmAbastecimentoEditor.edImposto.Value := 0;
+  frmAbastecimentoEditor.EditCodigo.Text := '';
+  frmAbastecimentoEditor.SetIndexComboBomba;
+  frmAbastecimentoEditor.ComboBomba.ItemIndex := 0;
+  frmAbastecimentoEditor.ShowModal();
+
 end;
 
 procedure TAbastecimentoController.Salvar(aAbastecimento: TAbastecimento);
-var
-  AbastecimentoDAO: TAbastecimentoDAO;
 begin
   try
-    AbastecimentoDAO := TAbastecimentoDAO.Create;
     AbastecimentoDAO.Salvar(aAbastecimento);
-    FreeAndNil(AbastecimentoDAO);
   except on E: Exception do
     begin
       raise Exception.Create(E.Message);
     end;
   end;
-end;
-
-procedure TAbastecimentoController.SetDados;
-begin
-  frmAbastecimentoEditor.EditCodigo.Text := inttostr(Abastecimento.ID);
-  frmAbastecimentoEditor.edLitros.Value := Abastecimento.NR_LITROS;
-  frmAbastecimentoEditor.edValor.Value := Abastecimento.VL_TOTAL;
-  frmAbastecimentoEditor.edImposto.Value := Abastecimento.VL_IMPOSTO;
-  frmAbastecimentoEditor.ComboBomba.ItemIndex := Abastecimento.ID_BOMBA;
 end;
 
 procedure TAbastecimentoController.SetDataSouceGrid(ADataSource: TDataSource);

@@ -37,8 +37,9 @@ object frmPrincipal: TfrmPrincipal
     end
     object Relatrios1: TMenuItem
       Caption = 'Relat'#243'rios'
-      object Abastecimentos2: TMenuItem
+      object mAbastecimentos: TMenuItem
         Caption = 'Abastecimentos'
+        OnClick = mAbastecimentosClick
       end
     end
   end

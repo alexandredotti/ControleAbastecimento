@@ -1,12 +1,11 @@
 inherited frmAbastecimento: TfrmAbastecimento
   Caption = 'Abastecimento'
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
     inherited Panel2: TPanel
-      ExplicitLeft = 2
-      ExplicitTop = -5
       inherited btnNovo: TButton
         OnClick = btnNovoClick
       end
@@ -14,15 +13,6 @@ inherited frmAbastecimento: TfrmAbastecimento
         OnClick = btnEditarClick
       end
       inherited btnExcluir: TButton
-        OnClick = btnExcluirClick
-      end
-      object btnRelatorio: TButton
-        Left = 512
-        Top = 20
-        Width = 75
-        Height = 25
-        Caption = 'Relat'#243'rio'
-        TabOrder = 3
         OnClick = btnExcluirClick
       end
     end

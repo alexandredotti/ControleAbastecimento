@@ -9,11 +9,11 @@ uses
 
 type
   TfrmAbastecimento = class(TfrmConsultaBase)
-    btnRelatorio: TButton;
     procedure btnNovoClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     AbastecimentoController : TAbastecimentoController;
@@ -33,22 +33,21 @@ procedure TfrmAbastecimento.btnEditarClick(Sender: TObject);
 begin
   inherited;
   AbastecimentoController.Editar;
+  AbastecimentoController.Listar;
 end;
 
 procedure TfrmAbastecimento.btnExcluirClick(Sender: TObject);
 begin
   inherited;
   AbastecimentoController.Excluir;
+  AbastecimentoController.Listar;
 end;
 
 procedure TfrmAbastecimento.btnNovoClick(Sender: TObject);
 begin
   inherited;
-  if (frmAbastecimentoEditor = nil) then
-  begin
-    Application.CreateForm(TfrmAbastecimentoEditor, frmAbastecimentoEditor);
-  end;
-  frmAbastecimentoEditor.Show();
+  AbastecimentoController.Novo;
+  AbastecimentoController.Listar;
 end;
 
 procedure TfrmAbastecimento.FormCreate(Sender: TObject);
@@ -56,6 +55,11 @@ begin
   inherited;
   AbastecimentoController := TAbastecimentoController.Create;
   AbastecimentoController.SetDataSouceGrid(dsGrade);
+end;
+
+procedure TfrmAbastecimento.FormShow(Sender: TObject);
+begin
+  inherited;
   AbastecimentoController.Listar;
 end;
 

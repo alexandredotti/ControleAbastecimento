@@ -1,0 +1,59 @@
+unit ufTanqueEditor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufEditorBase, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Tanque;
+
+type
+  TfrmTanqueEditor = class(TfrmEditorBase)
+    Label1: TLabel;
+    EditDS_TANQUE: TEdit;
+    Label3: TLabel;
+    ComboTipoComb: TComboBox;
+    procedure btnSalvarClick(Sender: TObject);
+  private
+    { Private declarations }
+
+  public
+    { Public declarations }
+    procedure SetDados(aTanque : TTanque);
+  end;
+
+var
+  frmTanqueEditor: TfrmTanqueEditor;
+
+implementation
+
+{$R *.dfm}
+uses Tanque, TanqueController;
+
+procedure TfrmTanqueEditor.btnSalvarClick(Sender: TObject);
+var
+  Tanque: TTanque;
+  ControllerTanque : TTanqueController;
+begin
+  inherited;
+  Tanque := TTanque.create();
+  ControllerTanque := TTanqueController.Create();
+
+  if EditCodigo.Text <> '' then
+    Tanque.ID := strToInt(EditCodigo.Text)
+  else
+    Tanque.ID := 0;
+
+  Tanque.DS_TANQUE := EditDS_TANQUE.Text;
+  Tanque.TP_TANQUE := ComboTipoComb.ItemIndex;
+  ControllerTanque.Salvar(Tanque);
+end;
+
+procedure TfrmTanqueEditor.SetDados(aTanque: TTanque);
+begin
+  EditCodigo.Text := inttostr(aTanque.ID);
+  EditDS_TANQUE.Text := aTanque.DS_TANQUE;
+  ComboTipoComb.ItemIndex := aTanque.TP_TANQUE;
+end;
+
+end.

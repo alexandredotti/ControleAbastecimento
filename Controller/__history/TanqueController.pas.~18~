@@ -1,0 +1,106 @@
+unit TanqueController;
+
+interface
+
+uses Tanque, TanqueDAO, SysUtils, Data.DB, ufTanqueEditor, Vcl.Forms, Conexao;
+
+type
+  TTanqueController = class
+  private
+    { private declarations }
+    FdsTanque: TDataSource;
+    frmTanqueEditor: TfrmTanqueEditor;
+    Tanque : TTanque;
+    TanqueDAO: iTanque;
+    procedure SetDados;
+    procedure GetDados;
+  public
+    procedure Salvar(aTanque: TTAnque);
+    procedure Excluir();
+    procedure SetDataSouceGrid(ADataSource: TDataSource);
+    procedure Listar();
+    procedure Editar();
+    constructor Create;
+    destructor Destroy;override;
+  end;
+implementation
+
+
+constructor TTanqueController.Create;
+begin
+  TanqueDAO := TTanqueDAO.Create;
+  Tanque := TTanque.Create;
+end;
+
+destructor TTanqueController.Destroy;
+begin
+  if (Assigned(Tanque)) then
+    FreeAndNil(Tanque);
+
+  inherited;
+end;
+
+procedure TTanqueController.Editar;
+begin
+  if (not Assigned(frmTanqueEditor)) then
+    Application.CreateForm(TfrmTanqueEditor, frmTanqueEditor);
+  GetDados;
+  frmTanqueEditor.SetDados(Tanque);
+  frmTanqueEditor.ShowModal;
+  FreeAndNil(Tanque);
+end;
+
+procedure TTanqueController.Excluir();
+begin
+  try
+    if (FdsTanque.DataSet.IsEmpty) then
+      Exit;
+
+    TanqueDAO.Excluir(FdsTanque.DataSet.FieldByName('ID').AsInteger);
+  except on E: Exception do
+    begin
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+procedure TTanqueController.GetDados;
+begin
+  Tanque.ID := FdsTanque.DataSet.FieldByName('ID').AsInteger;
+  Tanque.DS_TANQUE := FdsTanque.DataSet.FieldByName('DS_TANQUE').AsString;
+  Tanque.TP_TANQUE := FdsTanque.DataSet.FieldByName('TP_TANQUE').AsInteger;
+end;
+
+procedure TTanqueController.Listar;
+begin
+  try
+    TanqueDAO.Listar(FdsTanque);
+  except on E: Exception do
+    begin
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+procedure TTanqueController.Salvar(aTanque: TTAnque);
+begin
+  try
+    TanqueDAO.Salvar(aTanque);
+  except on E: Exception do
+    begin
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+procedure TTanqueController.SetDados;
+begin
+
+end;
+
+procedure TTanqueController.SetDataSouceGrid(ADataSource: TDataSource);
+begin
+  FdsTanque := ADataSource;
+end;
+
+end.

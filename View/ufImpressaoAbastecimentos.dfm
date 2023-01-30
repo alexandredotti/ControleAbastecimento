@@ -1,0 +1,349 @@
+object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
+  Left = 0
+  Top = 0
+  Caption = 'Abastecimentos por Per'#237'odo'
+  ClientHeight = 597
+  ClientWidth = 769
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 769
+    Height = 65
+    Align = alTop
+    TabOrder = 0
+    ExplicitWidth = 800
+    object GroupBox1: TGroupBox
+      Left = 8
+      Top = 0
+      Width = 185
+      Height = 49
+      Caption = 'Data Inicial'
+      TabOrder = 0
+      object DataInicial: TDateTimePicker
+        Left = 19
+        Top = 16
+        Width = 150
+        Height = 21
+        Date = 44955.000000000000000000
+        Time = 44955.000000000000000000
+        TabOrder = 0
+      end
+    end
+    object GroupBox2: TGroupBox
+      Left = 199
+      Top = 0
+      Width = 185
+      Height = 49
+      Caption = 'Data Final'
+      TabOrder = 1
+      object DataFinal: TDateTimePicker
+        Left = 16
+        Top = 16
+        Width = 150
+        Height = 21
+        Date = 44955.000000000000000000
+        Time = 44955.000000000000000000
+        TabOrder = 0
+      end
+    end
+    object btnImprimir: TButton
+      Left = 411
+      Top = 11
+      Width = 75
+      Height = 31
+      Caption = 'Imprimir'
+      TabOrder = 2
+      OnClick = btnImprimirClick
+    end
+  end
+  object RLReport1: TRLReport
+    Left = 0
+    Top = 71
+    Width = 1123
+    Height = 794
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    PageSetup.Orientation = poLandscape
+    Visible = False
+    object RLBand1: TRLBand
+      Left = 38
+      Top = 38
+      Width = 1047
+      Height = 21
+      BandType = btHeader
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = False
+      Borders.DrawTop = False
+      Borders.DrawRight = False
+      Borders.DrawBottom = True
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 937
+        Top = 0
+        Width = 110
+        Height = 20
+        Align = faRight
+        Alignment = taCenter
+        Text = ''
+      end
+      object RLLabel1: TRLLabel
+        Left = 414
+        Top = 2
+        Width = 108
+        Height = 16
+        Align = faCenter
+        Alignment = taCenter
+        Caption = 'Posto ABC'
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Top = 59
+      Width = 1047
+      Height = 48
+      BandType = btTitle
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = False
+      Borders.DrawTop = False
+      Borders.DrawRight = False
+      Borders.DrawBottom = True
+      object RLLabel2: TRLLabel
+        Left = 0
+        Top = 0
+        Width = 1047
+        Height = 25
+        Align = faTop
+        Alignment = taCenter
+        Caption = 'Abastecimentos por Per'#237'odo'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -20
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object LabelPeriodo: TRLLabel
+        Left = 0
+        Top = 25
+        Width = 1047
+        Height = 16
+        Align = faTop
+        Alignment = taCenter
+      end
+    end
+    object RLBand3: TRLBand
+      Left = 38
+      Top = 107
+      Width = 1047
+      Height = 24
+      BandType = btColumnHeader
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = False
+      Borders.DrawTop = False
+      Borders.DrawRight = False
+      Borders.DrawBottom = True
+      object RLLabel3: TRLLabel
+        Left = 3
+        Top = 0
+        Width = 46
+        Height = 16
+        Align = faTopOnly
+        Alignment = taCenter
+        Caption = 'Data'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel4: TRLLabel
+        Left = 52
+        Top = 0
+        Width = 180
+        Height = 16
+        Align = faTopOnly
+        Alignment = taCenter
+        Caption = 'Bomba'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel5: TRLLabel
+        Left = 229
+        Top = 0
+        Width = 180
+        Height = 16
+        Align = faTopOnly
+        Alignment = taCenter
+        Caption = 'Tanque'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel6: TRLLabel
+        Left = 408
+        Top = 0
+        Width = 74
+        Height = 16
+        Align = faTopOnly
+        Caption = 'Litros'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel7: TRLLabel
+        Left = 483
+        Top = 0
+        Width = 98
+        Height = 17
+        Align = faTopOnly
+        Caption = 'Valor Total'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel8: TRLLabel
+        Left = 579
+        Top = 0
+        Width = 91
+        Height = 16
+        Align = faTopOnly
+        Caption = 'Imposto'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+    object RLBand4: TRLBand
+      Left = 38
+      Top = 131
+      Width = 1047
+      Height = 22
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = False
+      Borders.DrawTop = False
+      Borders.DrawRight = False
+      Borders.DrawBottom = True
+      BeforePrint = RLBand4BeforePrint
+      object RLDBText1: TRLDBText
+        Left = 3
+        Top = 0
+        Width = 46
+        Height = 16
+        DataField = 'DT_ABASTECIMENTO'
+        DataSource = dtsRelatorio
+        Text = ''
+      end
+      object RLDBText2: TRLDBText
+        Left = 52
+        Top = 0
+        Width = 180
+        Height = 16
+        DataField = 'DS_BOMBA'
+        DataSource = dtsRelatorio
+        Text = ''
+      end
+      object RLDBText3: TRLDBText
+        Left = 229
+        Top = 0
+        Width = 180
+        Height = 16
+        DataField = 'DS_TANQUE'
+        DataSource = dtsRelatorio
+        Text = ''
+      end
+      object RLDBText4: TRLDBText
+        Left = 408
+        Top = 0
+        Width = 74
+        Height = 16
+        DataField = 'NR_LITROS'
+        DataSource = dtsRelatorio
+        Text = ''
+      end
+      object RLDBText5: TRLDBText
+        Left = 483
+        Top = 0
+        Width = 98
+        Height = 16
+        DataField = 'VL_TOTAL'
+        DataSource = dtsRelatorio
+        Text = ''
+      end
+      object RLDBText6: TRLDBText
+        Left = 579
+        Top = 0
+        Width = 91
+        Height = 16
+        DataField = 'VL_IMPOSTO'
+        DataSource = dtsRelatorio
+        Text = ''
+      end
+    end
+    object RLBand5: TRLBand
+      Left = 38
+      Top = 153
+      Width = 1047
+      Height = 24
+      BandType = btFooter
+      BeforePrint = RLBand5BeforePrint
+      object lbperiodo: TLabel
+        Left = 273
+        Top = 0
+        Width = 104
+        Height = 21
+        Caption = 'Total do Per'#237'odo:'
+      end
+      object lbLitros: TRLLabel
+        Left = 408
+        Top = 0
+        Width = 74
+        Height = 16
+      end
+      object lbTotal: TRLLabel
+        Left = 483
+        Top = 0
+        Width = 98
+        Height = 16
+      end
+      object lbImposto: TRLLabel
+        Left = 579
+        Top = 0
+        Width = 91
+        Height = 16
+      end
+    end
+  end
+  object dtsRelatorio: TDataSource
+    Left = 552
+    Top = 16
+  end
+end

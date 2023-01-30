@@ -23,7 +23,8 @@ uses
   ufBomba in 'View\ufBomba.pas' {frmBomba},
   ufBombaEditor in 'View\ufBombaEditor.pas' {frmBombaEditor},
   ufAbastecimento in 'View\ufAbastecimento.pas' {frmAbastecimento},
-  ufAbastecimentoEditor in 'View\ufAbastecimentoEditor.pas' {frmAbastecimentoEditor};
+  ufAbastecimentoEditor in 'View\ufAbastecimentoEditor.pas' {frmAbastecimentoEditor},
+  ufImpressaoAbastecimentos in 'View\ufImpressaoAbastecimentos.pas' {frmImpressaoAbastecimentos};
 
 {$R *.res}
 
@@ -31,13 +32,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmConsultaBase, frmConsultaBase);
-  Application.CreateForm(TfrmEditorBase, frmEditorBase);
-  Application.CreateForm(TfrmTanque, frmTanque);
-  Application.CreateForm(TfrmTanqueEditor, frmTanqueEditor);
-  Application.CreateForm(TfrmBomba, frmBomba);
-  Application.CreateForm(TfrmBombaEditor, frmBombaEditor);
-  Application.CreateForm(TfrmAbastecimento, frmAbastecimento);
-  Application.CreateForm(TfrmAbastecimentoEditor, frmAbastecimentoEditor);
+  Application.CreateForm(TfrmImpressaoAbastecimentos, frmImpressaoAbastecimentos);
   Application.Run;
 end.
