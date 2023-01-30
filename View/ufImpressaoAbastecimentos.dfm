@@ -21,7 +21,6 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
     Height = 65
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 800
     object GroupBox1: TGroupBox
       Left = 8
       Top = 0
@@ -71,6 +70,7 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
     Top = 71
     Width = 1123
     Height = 794
+    DataSource = dtsRelatorio
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -13
@@ -318,8 +318,8 @@ object frmImpressaoAbastecimentos: TfrmImpressaoAbastecimentos
       object lbperiodo: TLabel
         Left = 273
         Top = 0
-        Width = 104
-        Height = 21
+        Width = 97
+        Height = 16
         Caption = 'Total do Per'#237'odo:'
       end
       object lbLitros: TRLLabel
