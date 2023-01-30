@@ -19,15 +19,11 @@ object frmEditorBase: TfrmEditorBase
     Height = 282
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 208
-    ExplicitTop = 104
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object LabelCodigo: TLabel
       Left = 28
       Top = 16
       Width = 33
-      Height = 15
+      Height = 13
       Caption = 'C'#243'digo'
     end
     object Panel2: TPanel
@@ -37,8 +33,6 @@ object frmEditorBase: TfrmEditorBase
       Height = 41
       Align = alBottom
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 241
       object btnSalvar: TButton
         Left = 350
         Top = 8
@@ -46,7 +40,6 @@ object frmEditorBase: TfrmEditorBase
         Height = 25
         Caption = 'Salvar'
         TabOrder = 0
-        OnClick = btnSalvarClick
       end
       object btnCancelar: TButton
         Left = 431
@@ -62,7 +55,7 @@ object frmEditorBase: TfrmEditorBase
       Left = 63
       Top = 13
       Width = 81
-      Height = 24
+      Height = 21
       Color = clWhite
       Enabled = False
       TabOrder = 1

@@ -3,10 +3,6 @@ inherited frmBombaEditor: TfrmBombaEditor
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
-    ExplicitLeft = 0
-    ExplicitTop = 0
-    ExplicitWidth = 529
-    ExplicitHeight = 282
     inherited LabelCodigo: TLabel
       Left = 74
       ExplicitLeft = 74
@@ -27,15 +23,14 @@ inherited frmBombaEditor: TfrmBombaEditor
     end
     inherited Panel2: TPanel
       TabOrder = 3
-      ExplicitLeft = 1
-      ExplicitTop = 240
+      inherited btnSalvar: TButton
+        OnClick = btnSalvarClick
+      end
     end
     inherited EditCodigo: TEdit
       Left = 109
-      Height = 21
       TabOrder = 2
       ExplicitLeft = 109
-      ExplicitHeight = 21
     end
     object EditDS_BOMBA: TEdit
       Left = 109

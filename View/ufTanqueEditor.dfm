@@ -9,8 +9,6 @@ inherited frmTanqueEditor: TfrmTanqueEditor
   inherited Panel1: TPanel
     Width = 430
     Height = 268
-    ExplicitLeft = 0
-    ExplicitTop = 0
     ExplicitWidth = 430
     ExplicitHeight = 268
     inherited LabelCodigo: TLabel
@@ -37,11 +35,11 @@ inherited frmTanqueEditor: TfrmTanqueEditor
       Top = 226
       Width = 428
       TabOrder = 3
-      ExplicitLeft = 1
       ExplicitTop = 226
       ExplicitWidth = 428
       inherited btnSalvar: TButton
         Left = 188
+        OnClick = btnSalvarClick
         ExplicitLeft = 188
       end
       inherited btnCancelar: TButton
@@ -51,10 +49,8 @@ inherited frmTanqueEditor: TfrmTanqueEditor
     end
     inherited EditCodigo: TEdit
       Left = 109
-      Height = 21
       TabOrder = 2
       ExplicitLeft = 109
-      ExplicitHeight = 21
     end
     object EditDS_TANQUE: TEdit
       Left = 109

@@ -14,7 +14,6 @@ type
     btnCancelar: TButton;
     LabelCodigo: TLabel;
     EditCodigo: TEdit;
-    procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
@@ -32,11 +31,6 @@ implementation
 procedure TfrmEditorBase.btnCancelarClick(Sender: TObject);
 begin
   ModalResult := mrAbort;
-end;
-
-procedure TfrmEditorBase.btnSalvarClick(Sender: TObject);
-begin
-  ModalResult := mrOk;
 end;
 
 end.

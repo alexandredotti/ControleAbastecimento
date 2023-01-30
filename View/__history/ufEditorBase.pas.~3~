@@ -1,0 +1,42 @@
+unit ufEditorBase;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfrmEditorBase = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    btnSalvar: TButton;
+    btnCancelar: TButton;
+    LabelCodigo: TLabel;
+    EditCodigo: TEdit;
+    procedure btnSalvarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmEditorBase: TfrmEditorBase;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmEditorBase.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrAbort;
+end;
+
+procedure TfrmEditorBase.btnSalvarClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+end.

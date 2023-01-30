@@ -3,10 +3,6 @@ inherited frmAbastecimentoEditor: TfrmAbastecimentoEditor
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
-    ExplicitLeft = 0
-    ExplicitTop = 0
-    ExplicitWidth = 529
-    ExplicitHeight = 282
     object Label3: TLabel [1]
       Left = 31
       Top = 66
@@ -44,15 +40,14 @@ inherited frmAbastecimentoEditor: TfrmAbastecimentoEditor
     end
     inherited Panel2: TPanel
       TabOrder = 5
-      ExplicitLeft = 1
-      ExplicitTop = 240
+      inherited btnSalvar: TButton
+        OnClick = btnSalvarClick
+      end
     end
     inherited EditCodigo: TEdit
       Width = 90
-      Height = 21
       TabOrder = 4
       ExplicitWidth = 90
-      ExplicitHeight = 21
     end
     object edLitros: TNumberBox
       Left = 63

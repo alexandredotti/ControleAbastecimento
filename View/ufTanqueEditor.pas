@@ -57,6 +57,7 @@ begin
     Tanque.DS_TANQUE := EditDS_TANQUE.Text;
     Tanque.TP_TANQUE := ComboTipoComb.ItemIndex;
     ControllerTanque.Salvar(Tanque);
+    ModalResult := mrOk;
   end;
 end;
 

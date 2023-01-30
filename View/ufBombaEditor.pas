@@ -60,9 +60,10 @@ begin
       Bomba.ID := 0;
 
     Bomba.DS_BOMBA := EditDS_BOMBA.Text;
-    Bomba.ID_TANQUE := ComboTanque.ItemIndex;
+    Bomba.ID_TANQUE := Integer(ComboTanque.Items.Objects[ComboTanque.ItemIndex]);
 
     ControllerBomba.Salvar(Bomba);
+    ModalResult := mrOk;
   end
 end;
 

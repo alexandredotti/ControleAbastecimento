@@ -68,12 +68,13 @@ begin
       Abastecimento.ID := 0;
 
     Abastecimento.DT_ABASTECIMENTO := DT_ABASTECIMENTO.Date;
-    Abastecimento.ID_BOMBA := ComboBomba.ItemIndex;
+    Abastecimento.ID_BOMBA := Integer(ComboBomba.Items.Objects[ComboBomba.ItemIndex]);
     Abastecimento.NR_LITROS := edLitros.Value;
     Abastecimento.VL_TOTAL := edValor.Value;
     Abastecimento.VL_IMPOSTO := edImposto.Value;
 
     AbastecimentoController.Salvar(Abastecimento);
+    ModalResult := mrOk;
   end;
 end;
 
