@@ -1,4 +1,4 @@
-# Controle de Abastecimento.
+# Controle de Abastecimentos.
 Projeto para controle de abastecimentos, realizado em Delphi, para demonstrar conhecimentos em POO e boas práticas.
 
 # Ambiente
