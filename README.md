@@ -7,3 +7,5 @@ O projeto foi desenvolvido com o Delphi community 10.4 utilizando as ferramentas
 # Estrutura
 A aplicação permite cadastrar tanques, bombas, abastecimentos e visualizar um relatório filtrando pela data.
 
+teste
+
