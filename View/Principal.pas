@@ -39,8 +39,6 @@ begin
 
   Application.CreateForm(TfrmAbastecimento, frmAbastecimento);
   frmAbastecimento.Show();
-  //comentario novo
-
 end;
 
 procedure TfrmPrincipal.mAbastecimentosClick(Sender: TObject);
